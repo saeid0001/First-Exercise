@@ -1,14 +1,16 @@
-import { useContext , Fragment } from 'react' ;
+import { Fragment } from 'react' ;
 import './categories-preview.style.scss'
 
-import { CategoryContext } from '../../context/category.context' ;
 
 // import ProductCard from '../../components/product-card/product-card.component';
 import CategoryPreview from '../../components/category-preview/category-preview.component';
+import { selectContex } from '../../store/category/category-selector';
+import { useSelector } from 'react-redux';
 
 const CategoriesPreview = () => {
 
-  const { category } = useContext(CategoryContext)
+  const category = useSelector(selectContex)
+  // const { category } = useContext(CategoryContext)
   
 
   return (

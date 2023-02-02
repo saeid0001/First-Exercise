@@ -1,9 +1,11 @@
-import { useState , useContext } from 'react' ;
+import { useState } from 'react' ;
 import { createUsersWithEmailAndPassword , createUserDocumentFromAuth } from '../../utils/firebase/firebase-component';
 import SingInput from '../form-input/form-input.component' ;
 import Button from '../button/button.component' ;
 import './sign-up.style.scss' ;
-import { UserContext } from '../../context/user.context'
+// import { UserContext } from '../../context/user.context'
+import { setContex } from '../../store/user/user-action';
+import { useDispatch } from 'react-redux';
 
 const defultFormSingUp = {
     displyName : "" ,
@@ -13,10 +15,11 @@ const defultFormSingUp = {
 }
 
 const SingUpForm = () => {
-
+    
+    const dispatch = useDispatch()
     const [signFile , setSignFile] = useState(defultFormSingUp) ;
     const { displyName , email , password , configPassword } = signFile ;
-    const { setContex } = useContext(UserContext)
+    // const { setContex } = useContext(UserContext) ;
 
     const handelChange = (e) =>{
         const { name , value } = e.target;
@@ -35,7 +38,7 @@ const SingUpForm = () => {
             
             const {user} = await createUsersWithEmailAndPassword(email , password) ;
             await createUserDocumentFromAuth(user , {displyName})
-            setContex(user) ;
+            dispatch(setContex(user)) ;
             setSignFile(defultFormSingUp) ;
 
         } catch (error) {

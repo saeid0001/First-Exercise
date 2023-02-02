@@ -4,24 +4,28 @@ import './index.scss';
 import App from "./App" ;
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter as Router , Routes , Route} from 'react-router-dom' ;
-import { UesrProvider } from './context/user.context' ;
-import { CategoryProvider } from './context/category.context' ;
-import { CartProvider } from './context/cart.context' ;
+// import { UesrProvider } from './context/user.context' ;
+// import { CategoryProvider } from './context/category.context' ;
+// import { CartProvider } from './context/cart.context' ;
+import { Provider } from 'react-redux';
+import { store } from './store/stroe';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <UesrProvider>
-      <CategoryProvider>
-        <CartProvider>
-          <Router>
-            <Routes>
-                <Route path='/*' element={<App />} />      
-            </Routes>
-          </Router>
-        </CartProvider>
-      </CategoryProvider>
-    </UesrProvider>
+    <Provider store={store}>
+      {/*<UesrProvider>*/}
+        {/*<CategoryProvider>*/}
+          {/*<CartProvider>*/}
+            <Router>
+              <Routes>
+                  <Route path='/*' element={<App />} />      
+              </Routes>
+            </Router>
+          {/*</CartProvider>*/}
+        {/*</CategoryProvider>*/}
+      {/*</UesrProvider>*/}
+    </Provider>
   </React.StrictMode>
 );
 
